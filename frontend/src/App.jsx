@@ -2,7 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CreateProduct from "./pages/CreateProduct";
 import ProductList from "./pages/ProductList";
-import Login from "./pages/Login";
+import UserSignup from "./pages/Signup";
+import UserLogin from "./pages/Login";
+
 
 export default function App() {
   return (
@@ -10,7 +12,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<CreateProduct />} />
         <Route path="/product" element={<ProductList/>} />
-         <Route path="/user" element={<Login/>} />
+         <Route path="/user" element={<UserSignup/>} />
+           <Route path="/userlogin" element={<UserLogin/>} />
       </Routes>
     </Router>
   );

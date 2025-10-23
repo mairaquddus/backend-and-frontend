@@ -4,11 +4,11 @@ import "../App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function UserLogin() {
-  const [userlogin, setUserlogin] = useState();
+export default function UserSignup() {
+  const [users, setUsers] = useState();
  
 
- 
+  const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -16,18 +16,18 @@ export default function UserLogin() {
   async function handleAddUser(e) {
     e.preventDefault();
     const newUser = {
-      
+      username: usernameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value
     };
 
     try {
-      const res = await axios.post("http://localhost:3000/api/users/login", newUser);
-      console.log("Login Successfully:", res.data);
+      const res = await axios.post("http://localhost:3000/api/users/register", newUser);
+      console.log("Signup Successfully:", res.data);
       toast.success(res.data.message || "User added successfully!");
     } catch (error) {
-      console.error("Error login user:", error);
-      toast.error("Failed to login user.");
+      console.error("Error adding user:", error);
+      toast.error("Failed to add user.");
     }
   }
 
@@ -38,7 +38,7 @@ export default function UserLogin() {
       <div className="form-card">
         <h2 className="form-title">Sign up</h2>
         <form onSubmit={handleAddUser}>
-        
+          <input type="text" placeholder="Enter your name" ref={usernameRef} />
           <input
             type="text"
             placeholder="Enter your valid email"
@@ -48,7 +48,7 @@ export default function UserLogin() {
 
          
 
-          <button type="submit">Login</button>
+          <button type="submit">Sign up</button>
         </form>
       </div>
     </div>
